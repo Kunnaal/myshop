@@ -47,11 +47,14 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
+    'coupons.apps.CouponsConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # Language middleware
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -113,15 +116,31 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-in'  # The default language code for the project. This is in standard language ID format. This
+# setting requires USE_I18N to be set to True in order to take effect.
 
-TIME_ZONE = 'UTC'
+LANGUAGES = (
+    ('en-in', 'English'),
+    ('hi', 'Hindi'),
+)  # A tuple that contains available languages for the project. They come in two tuples of a language code and
+# language name. When you choose which languages your site will be available in, you set LANGUAGES to a subset of
+# that list.
 
-USE_I18N = True
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)  # A list of directories where Django looks for message files containing translations for the project.
 
-USE_L10N = True
+TIME_ZONE = 'UTC'  # A string that represents the timezone for the project. This is set to 'UTC' when you create a
+# new project using the startproject command.
 
-USE_TZ = True
+USE_I18N = True  # INTERNATIONALIZATION A Boolean that specifies whether Django's translation system is enabled. This
+# is True by default.
+
+USE_L10N = True  # LOCALIZATION A Boolean indicating whether localized formatting is enabled. When active, localized
+# formats are used to represent dates and numbers. This is True by default.
+
+USE_TZ = True  # A Boolean that specifies whether datetimes are timezone-aware. When you create a project with the
+# startproject command, this is set to True.
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
